@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -30,7 +31,7 @@
 <body>
     <div class="content">
         <div class="header">
-            <h2>{{ title }}</h2>
+            <h2>{{ hp }}</h2>
         </div>
         <div style="text-align:right">
             <a href="{% url 'board:write' %}">글쓰기</a>
@@ -51,7 +52,7 @@
                     <td style="text-align:center;">{{ forloop.counter }}</td>
                     <td>
                         <a href="{% url 'board:detail' data.id %}">
-                            {{ data.title }}
+                            {{ data.hp }}
                         </a>
                     </td>
                     <td>{{ data.pub_date|date:'Y-m-d' }}</td>

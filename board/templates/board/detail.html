@@ -60,7 +60,7 @@
 				<tr>
 					<td class="td_title" style="text-align:center; width:20%;">제목</td>
 					<td style="padding:10px;">
-						<input type="text" name="title" id="title" value="{{ board.title }}" readonly/>
+						<input type="text" name="title" id="title" value="{{ board.hp }}" readonly/>
 					</td>
 				</tr>
 				<tr>
@@ -72,7 +72,7 @@
 				<tr>
 					<td class="td_title" style="text-align:center;">내용</td>
 					<td style="padding:10px;">
-						<textarea name="detail" id="detail" rows="10" readonly>{{ board.content }}</textarea>
+						<textarea name="detail" id="detail" rows="10" readonly>{{ board.hp }}</textarea>
 					</td>
 				</tr>
 			</tbody>
@@ -81,7 +81,7 @@
 			<a href="{% url 'board:index' %}">> Home</a>
 		</div>
 
-		<form action="{% url 'board:create_reply' board.id %}" method="post">
+		<!-- <form action="{% url 'board:create_reply' board.id %}" method="post">
 		{% csrf_token %}
 		<table class="board_for_read">
 			<tbody>
@@ -96,13 +96,13 @@
 				</tr>
 			</tbody>
 		</table>
-		</form>
+		</form> -->
 
-		<div class="reply_content">
+		<!-- <div class="reply_content">
 			{% for rep in board.reply_set.all %}
 				<span class="reply">{{ rep.comment }} [{{ rep.rep_date|date:'Y-m-d H:i'}}]</span>
 			{% endfor %}
-		</div>
+		</div> -->
     </div>
 </body>
 </html>

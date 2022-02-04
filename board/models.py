@@ -2,13 +2,11 @@ from django.db import models
 
 class Board(models.Model):
     """
-        board_no: 설문조사 번호
         addr: 사는곳
         sex: 성별
         author: 좋아하는 작가(다중 선택가능)
         create_date: 설문 조사일
     """
-    board_no =  models.BigAutoField(primary_key= True)
     addr = models.CharField(max_length=100)
     sex = models.CharField(max_length=3)
     age = models.CharField(max_length=3)
@@ -19,6 +17,17 @@ class Board(models.Model):
 
     def __str__(self):
         return self.hp
+
+class author(models.Model):
+    """
+        작가 코드 테이블
+    """
+    #reply = models.ForeignKey(Board, on_delete=models.CASCADE)
+    name = models.CharField(max_length=200)
+    pub_date = models.DateTimeField()
+
+    def __str__(self):
+        return self.name
 
 # class Reply(models.Model):
 #     """

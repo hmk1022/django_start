@@ -14,7 +14,6 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Board',
             fields=[
-                ('board_no', models.BigAutoField(primary_key=True, serialize=False)),
                 ('addr', models.CharField(max_length=100)),
                 ('sex', models.CharField(max_length=3)),
                 ('age', models.CharField(max_length=3)),

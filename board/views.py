@@ -44,7 +44,7 @@ def write(request):
     return render(request, 'board/write.html')
 
 def write_board(request):
-    b = Board(title=request.POST['title'], content=request.POST['detail'], author="choi", pub_date=timezone.now())
+    b = Board(hp=request.POST['hp'], sex=request.POST['sex'], age=request.POST['age'], author=request.POST['author'], pub_date=timezone.now())
     b.save()
     return HttpResponseRedirect(reverse('board:index'))
 
