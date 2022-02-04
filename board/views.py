@@ -48,7 +48,7 @@ def detail(request, board_id):
     try:
         cursor = connection.cursor()
 
-        strSql = "SELECT hp, age, sex, author, pub_date FROM board_board WHERE id = (%s)"
+        strSql = "SELECT b.hp, b.age, CASE WHEN b.sex = '01'THEN '남성'WHEN b.sex = '02'THEN '여성' ELSE '성별을 알 수 없음' END as sex, b.pub_date, a.name FROM board_board b LEFT JOIN (SELECT code, name from author) a on a.code = b.author WHERE id = (%s)"
         result = cursor.execute(strSql, (board_id,))
         datas = cursor.fetchall()
 
@@ -58,8 +58,8 @@ def detail(request, board_id):
         board = {'hp': datas[0][0],
                 'age': datas[0][1],
                 'sex': datas[0][2],
-                'author': datas[0][3],
-                'pub_date': datas[0][4]}
+                'pub_date': datas[0][3],
+                'name': datas[0][4]}
 
     except:
         connection.rollback()
