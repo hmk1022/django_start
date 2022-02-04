@@ -29,6 +29,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.utils import timezone
 from django.urls import reverse
+from django.db import connection
 
 from .models import Board
 
@@ -36,8 +37,35 @@ def index(request):
     all_boards = Board.objects.all().order_by("-pub_date") # 모든 데이터 조회, 내림차순(-표시) 조회
     return render(request, 'board/index.html', {'title':'Board List', 'board_list':all_boards})
 
+# def detail(request, board_id):
+#     board = Board.objects.get(id=board_id)
+#     return render(request, 'board/detail.html', {'board': board})
+
 def detail(request, board_id):
-    board = Board.objects.get(id=board_id)
+    # book1 = get_object_or_404(Book, code=code)
+    # book2 = Book.objects.get(code=code)
+
+    try:
+        cursor = connection.cursor()
+
+        strSql = "SELECT hp, age, sex, author, pub_date FROM board_board WHERE id = (%s)"
+        result = cursor.execute(strSql, (board_id,))
+        datas = cursor.fetchall()
+
+        connection.commit()
+        connection.close()
+
+        board = {'hp': datas[0][0],
+                'age': datas[0][1],
+                'sex': datas[0][2],
+                'author': datas[0][3],
+                'pub_date': datas[0][4]}
+
+    except:
+        connection.rollback()
+        print("Failed selecting in BookListView")
+
+
     return render(request, 'board/detail.html', {'board': board})
 
 def write(request):
@@ -48,7 +76,7 @@ def write_board(request):
     b.save()
     return HttpResponseRedirect(reverse('board:index'))
 
-def create_reply(request, board_id):
-    b = Board.objects.get(id = board_id)
-    b.reply_set.create(comment=request.POST['comment'], rep_date=timezone.now())
-    return HttpResponseRedirect(reverse('board:detail', args=(board_id,)))    
+# def create_reply(request, board_id):
+#     b = Board.objects.get(id = board_id)
+#     b.reply_set.create(comment=request.POST['comment'], rep_date=timezone.now())
+#     return HttpResponseRedirect(reverse('board:detail', args=(board_id,)))    

@@ -11,10 +11,11 @@
         .survey-title {
             text-align: center;
             font-weight: bolder;
+            margin-bottom: 20px;
 
         }
         .content {
-            max-width:500px;
+            max-width:800px;
             margin: auto;
             padding:10px;
         }
@@ -23,16 +24,6 @@
 			width: 100%;
 			background-color:#f1f1f1;
 		}
-
-		#hp {
-			height: 32px;
-			width: 100%;
-			border-radius: 0.5em;
-			border: none;
-			font-family: inherit;
-			font-size: inherit;
-		}
-
         textarea {
 			width: 100%;
             font-family: inherit;
@@ -55,12 +46,59 @@
 
         <div class="input-group mb-3">
             <div class="input-group-prepend">
-                <span class="input-group-text" id="inputGroup-sizing-default">Default</span>
+                <span class="input-group-text" id="inputGroup-sizing-default">HP</span>
             </div>
-            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" >
+            <input type="text" name="hp" placeholder=" -를 빼고 입력해주세요 ex) 01054859059" id="hp" value="{{ board.hp }}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"  >
         </div>   
         
-        <div class="input-group mb-3">
+        <label for="inputState">연령대</label>
+        <select name="age" id="age" value="{{ board.age }}" id="inputState" class="form-control">
+          <option selected>연령대를 선택해 주세요</option>
+          <option value="20">10대</option>
+          <option value="20">20대</option>
+          <option value="20">30대</option>
+          <option value="20">40대</option>
+          <option value="20">50대</option>
+          <option value="20">60대</option>
+          <option value="20">70대</option>
+          <option value="20">80대</option>
+          <option value="20">90대</option>
+        </select>
+
+        <label class="mt-3" for="inputState">좋아하는 작가</label>
+        <select name="author" id="author" value="{{ board.author }}" id="inputState" class="form-control">
+            <option selected>좋아하는 작가를 선택해 주세요</option>
+            <option value="01">이중섭</option>
+            <option value="02">박수근</option>
+            <option value="03">에곤쉴레</option>
+            <option value="04">김환기</option>
+            <option value="05">고흐</option>
+            <option value="06">고갱</option>
+            <option value="07">달리</option>
+            <option value="08">모네</option>
+            <option value="09">뱅크시</option>
+          </select> 
+
+        <legend class="col-form-label col-sm-12 ">성별</legend>
+        <div class="col-sm-12">
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="sex" id="sex" value="01" checked>
+                <label class="form-check-label" for="sex">
+                    남성
+                </label>
+                </div>
+                <div class="form-check">
+                <input class="form-check-input" type="radio" name="sex" id="sex" value="02">
+                <label class="form-check-label" for="sex">
+                    여성
+                </label>
+                </div>
+            </div>
+        </div>
+
+       
+
+        <!-- <div class="input-group mb-3">
             <div class="input-group-prepend">
                 <span class="input-group-text" id="inputGroup-sizing-default">Default</span>
             </div>
@@ -79,14 +117,7 @@
                 <span class="input-group-text" id="inputGroup-sizing-default">Default</span>
             </div>
             <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-        </div>
-
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <span class="input-group-text" id="inputGroup-sizing-default">Default</span>
-            </div>
-            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-        </div>
+        </div> -->
           
 		<!-- <table class="board_for_read">
 			<tbody>
@@ -117,10 +148,13 @@
 			</tbody>
 		</table> -->
 
-        <div style="text-align:right;padding: 5px;">
+        <!-- <div style="text-align:right;padding: 5px;">
 			<input type="submit" value="저장">
-		</div>
-		</form>
+		</div> -->
+        <div class="col-sm-12">
+            <button type="submit" class="btn btn-primary" style="width: 100%; align-items: center; margin: 0px auto">저장</button>
+        </div>
+        </form>
 
 		<div style="text-align:left;">
 			<a href="{% url 'board:index' %}">> Home</a>

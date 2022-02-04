@@ -58,21 +58,27 @@
 		<table class="board_for_read">
 			<tbody>
 				<tr>
-					<td class="td_title" style="text-align:center; width:20%;">제목</td>
+					<td class="td_title" style="text-align:center; width:20%;">HP</td>
 					<td style="padding:10px;">
 						<input type="text" name="title" id="title" value="{{ board.hp }}" readonly/>
 					</td>
 				</tr>
 				<tr>
-					<td class="td_title" style="text-align:center; width:20%;">작성일자</td>
+					<td class="td_title" style="text-align:center; width:20%;">연령대</td>
 					<td style="padding:10px;">
-						<span>{{ board.pub_date }}</span>
+						<span>{{ board.age }}대</span>
 					</td>
 				</tr>
-				<tr>
-					<td class="td_title" style="text-align:center;">내용</td>
+                <tr>
+					<td class="td_title" style="text-align:center; width:20%;">좋아하는작가</td>
 					<td style="padding:10px;">
-						<textarea name="detail" id="detail" rows="10" readonly>{{ board.hp }}</textarea>
+						<span>{{ board.author }}</span>
+					</td>
+				</tr>
+                <tr>
+					<td class="td_title" style="text-align:center; width:20%;">성별</td>
+					<td style="padding:10px;">
+						<span>{{ board.sex }}</span>
 					</td>
 				</tr>
 			</tbody>
@@ -81,28 +87,7 @@
 			<a href="{% url 'board:index' %}">> Home</a>
 		</div>
 
-		<!-- <form action="{% url 'board:create_reply' board.id %}" method="post">
-		{% csrf_token %}
-		<table class="board_for_read">
-			<tbody>
-				<tr>
-					<td colspan="2" class="td_title" style="text-align:left; padding-left:10px; height:30px;">leave a comment</td>
-				</tr>
-				<tr>
-					<td style="text-align:center;">
-						<input type="text" name="comment" id="comment" style="width:100%">
-					</td>
-					<td><input type="submit" value="save"></td>
-				</tr>
-			</tbody>
-		</table>
-		</form> -->
-
-		<!-- <div class="reply_content">
-			{% for rep in board.reply_set.all %}
-				<span class="reply">{{ rep.comment }} [{{ rep.rep_date|date:'Y-m-d H:i'}}]</span>
-			{% endfor %}
-		</div> -->
+		
     </div>
 </body>
 </html>
